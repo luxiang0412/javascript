@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>按键修饰符</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <!--
+        监听按键事件
+        所有按键修饰的别名：
+       .enter .tab .delete .esc .space .up .down .left .right 
+       也可以自定义按键修饰的别名config.keyCodes
+    -->
+    <input type="text"  @keyup.page-down="doConsole">
+
+    <!--
+        辅助按键 事件触发时  辅助按键必须是按下的状态
+    -->
+    <!-- Alt + C -->
+    <input @keyup.alt.67="clear" placeholder="keyup.alt.67">
+
+    <!-- Ctrl + Click -->
+    <div @click.ctrl="doSomething">做一些操作</div>
+
+    <!--
+        .exact 修饰符可以控制触发事件所需的系统辅助按键的准确组合。
+    -->
+    <!-- 如果 Alt 键或 Shift 键与  Ctrl 键同时按下，也会触发事件 -->
+    <button @click.ctrl="onClick">A</button>
+
+    <!-- 只在 Ctrl 按键按下，其他按键未按下时，触发事件 -->
+    <button @click.ctrl.exact="onCtrlClick">A</button>
+
+    <!-- 只在系统辅助按键按下时，触发事件 -->
+    <button @click.exact="onClick">A</button>
+
+
+    <!--
+        鼠标按键修饰符 .left .right .middle
+    -->
+</div>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+
+		},
+        methods:{
+            doConsole:function(){
+                console.log('12121212')
+            },
+            clear:function(){
+                console.log('alt+c')
+            },
+            doSomething:function(){
+                console.log('Ctrl + Click')
+            },
+            onCtrlClick:function(){
+                console.log('只在 Ctrl 按键按下，其他按键未按下时，触发事件')
+            },
+            onClick:function(){
+                console.log('。。。。。')
+            }
+        }
+	});
+</script>
+</html>

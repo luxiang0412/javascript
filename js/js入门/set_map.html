@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+
+    -->
+</body>
+<script type="text/javascript">
+    /*
+       
+    */
+    var a = [
+        'a',
+        'b',
+        'c'
+    ];
+    var b = new Set(['d','e','f']);
+    var c = new Map([[1,'g'],[2,'h'],[3,'i']]);
+    /*
+       元素 of 数组
+       元素 of map
+       元素 of set
+       索引 in 数组
+    */
+    for(var y of b){
+        console.log(y)
+    }
+    for(var x of a){
+        console.log(x)
+    }
+    for(var z of c){
+        console.log(z)
+    }
+    
+    /*
+        e表示数组的元素 
+        index表示元素当前的索引
+        a表示当前的数组
+    */
+    a.forEach(function(e,index,array){
+        console.log(e+'  '+index+'  '+array)
+    });
+    b.forEach(function(e,index,set){
+        console.log(e+'  '+index+'  '+set)
+    });
+    c.forEach(function(e,index,set){
+        console.log(e+'  '+index+'  '+set)
+    });
+</script>
+</html>

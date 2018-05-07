@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>model</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="doInput"><br>
+    <textarea v-model="doTextarea" cols="30" rows="10"></textarea><br>
+    <select v-model="doSelect">
+        <option value="one">one</option>
+        <option value="two">two</option>
+        <option value="three">three</option>
+        <option value="four">four</option>
+    </select>
+    <br>
+    doSelect:{{doSelect}}
+    <br>
+    <input type="checkbox" id="checkbox" v-model="checkbox">
+    <label for="checkbox">{{checkbox}}</label>
+    <!--
+        多选checkbox
+        
+    -->
+    <div id='example-3'>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>勾选的名字是：{{ checkedNames }}</span>
+    </div>
+
+    <!--
+        radio
+    -->
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>选中的是：{{ picked }}</span>
+
+    <!--
+        select
+    -->
+    <select v-model="selected">
+        <option disabled value="">请选择其中一项</option>
+        <option value="1">A</option>
+        <option value="2">B</option>
+        <option value="3">C</option>
+    </select>
+    <span>选中的是：{{ selected }}</span>
+</div>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+            doInput:'',
+            doTextarea:'',
+            doSelect:'one',
+            checkbox:false,
+            checkedNames:[],
+            picked:'',
+            selected:''
+		},
+        computed:{
+            
+        }
+	});
+</script>
+</html>

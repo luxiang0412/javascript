@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <!-- 
+        事件修饰符 在事件处理程序中调用event.preventDefault()等
+        虽然可以在methods中实现，但是最好是在methods中只有纯粹的数据逻辑
+        而不是去处理dom事件细节
+    -->
+    <button @click.once="doStop">.stop</button>
+</div>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+
+		},
+        methods:{
+            doStop:function(){
+                console.log('stop')
+            }
+        }
+	});
+</script>
+</html>

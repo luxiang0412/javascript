@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <span v-if="ok">是</span>
+    <span v-else>否</span><!--紧随 v-if 后面 还有 v-else-if -->
+    <template v-if="loginType === 'username'">
+        <!--在这个例子中   input label 被复用了 当改变loginType的值时，原有input的值不会改变，仅改变placeholder-->
+        <!--如果选择重新渲染，可以加上key-->
+        <label>用户名</label>
+        <input placeholder="请输入用户名" key="username">
+    </template>
+    <template v-else>
+        <label>邮箱</label>
+        <input placeholder="请输入邮箱" key="email">
+    </template>
+    <!-- v-if  和 v-show 的区别 v-show 是看不见摸的到  v-if 是 看不见也摸不到
+        当频繁的切换时 ，推荐使用v-show 
+    -->
+
+    <!-- v-for 的优先级高于 v-if  
+        v-for 还可以用 of作为分隔符
+    -->
+    <ul>
+        <li v-for="(item , index) in items">
+            {{item.name}}-{{index}}
+        </li>
+    </ul>
+    <!-- v-for 还可以用来遍历对象的属性  默认遍历值 ， 若要遍历 key 和value 还有索引  则用下面的方式
+        推荐使用 v-for的时候  给个 v-bind:key  简写成:key
+    -->
+    <ul>
+        <li v-for="(value , key ,index) in student" :key="value.id">
+            {{index}}   {{key}}:{{value}}  
+        </li>
+    </ul>
+    <!-- vue  会最大限度的来重用DOM元素，
+        有javascript的限制，vue无法检测一下数组的变动
+        直接使用索引设置 
+        app.items[0]={name:'aaa'}
+        app.items.length=5
+        可以使用下面的方式更新状态
+        Vue.set(app.items,0,{name:'aaaaaa'});
+        app.$set(app.items,0,{name:'aaaaaa'});
+
+        //改变数组的长度
+        app.items.splice(newLength)
+
+
+        因为javascript的限制， vue无法检测对象属性的添加爱或者删除
+        app.student.name='zhangsan'// 这是可以的
+        app.studetn.score=69;//这是不是响应的
+        但是可以使用Vue.set(app.student,'score',60) //这是响应的
+        或者使用app.$set(app.student,'score',11)
+        再执行app.student.score=21 //这个时候是响应的
+
+        在原有的对象 上 创建新的对象 ，新的对象拥有原来对象的属性和新对象属性
+        Object.assign(app.student,{
+            score:111
+        })//得到一个新的对象
+
+
+        可以通过下面的方式  添加新的响应式属性
+        app.student=Object.assign({},app.student,{
+            score:11,
+            ffff:'ffff'
+        }) //student 添加了两条属性
+    -->
+    <!-- in后面可以接一个函数-->
+    <span v-for="(n,index) in evenNumber" :key="n.id">
+        {{n}}
+    </span>
+</div>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+            ok:true,
+            loginType:'username',
+            items:[
+                    {name:'one'},
+                    {name:'two'},
+                    {name:'three'},
+                    {name:'four'}
+                    ],
+            student:{
+                name:'luxiang',
+                id:111,
+                gender:'boy'
+            },
+            number:[1,2,3,4,5]
+		},
+        computed:{
+            evenNumber:function(){
+                return this.number.filter(function(number){
+                    return number%2==1
+                })
+            }
+        }
+	});
+</script>
+</html>

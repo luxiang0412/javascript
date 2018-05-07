@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+	<my-comment></my-comment>
+</div>
+</body>
+<script type="text/javascript">
+	import Demo5 from './vue_demo/Demo5.vue';
+	var app = new Vue({
+		el:'#app',
+		components:{
+			'my-comment':{}
+		}
+	});
+	app.use(Demo5);
+</script>
+</html>

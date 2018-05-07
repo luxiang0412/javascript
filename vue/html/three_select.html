@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <select name="college" v-model="college">
+        <option :value="college_">请选择学院</option>
+        <option :value="college" v-for="college in colleges" :key="college.id">{{college.name}}</option>
+    </select>
+    <input type="text" v-model="collegeCode" name="collegeCode">
+    <select name="main" v-model="main">
+            <option :value="main_">请选择大专业</option>
+            <option :value="main" v-for="main in mains" :key="main.id">{{main.name}}</option>
+    </select>
+    <input type="text" name="mainCode" v-model="mainCode">
+    <input type="text" name="mainName" v-model="mainName">
+    <select name="son" v-model="son" >
+            <option :value="son_">请选择小专业</option>
+            <option :value="son" v-for="son in sons" :key="son.id">{{son.name}}</option>
+    </select>
+    <input type="text" name="sonCode" v-model="sonCode">
+    <input type="text" name="sonName" v-model="sonName">
+    <!--
+        
+    -->
+</div>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+            type:'',
+            collegeCode:'',
+            collegeName:'',
+            college:{},
+            college_:{},
+            mainCode:'',
+            mainName:'',
+            mains:[],
+            main:{},
+            main_:{},
+            sonCode:'',
+            sonName:'',
+            sons:[],
+            son:{},
+            son_:{},
+            colleges:[
+            {
+                    code:1,
+                    name:'oneCollege',
+                    mains:[
+                            {
+                                code:1,
+                                name:'oneMain',
+                                sons:[
+                                        {
+                                            code:1,
+                                            name:'oneSon'
+                                        },
+                                        {
+                                            code:2,
+                                            name:'twoSon'
+                                        },
+                                        {
+                                            code:3,
+                                            name:'threeSon'
+                                        },
+                                        {
+                                            code:4,
+                                            name:'fourSon'
+                                        }
+                                    ]
+                            },
+                            {
+                                code:2,
+                                name:'twoMain'
+                            },
+                            {
+                                code:3,
+                                name:'threeMain'
+                            },
+                            {
+                                code:4,
+                                name:'fourMain'
+                            }
+                        ]
+                    
+                },
+                {
+                    code:2,
+                    name:'twoCollege'
+                },
+                {
+                    code:3,
+                    name:'threeCollege'
+                },
+                {
+                    code:4,
+                    name:'fourCollege'
+                }
+            ]
+		},
+        watch:{
+            college:function(){
+                this.mainCode='';
+                this.mainName='';
+                this.sonCode='';
+                this.sonName='';
+                this.son={};
+                this.main={};
+                this.sons=[];
+                this.mains=[];
+                this.colleges.forEach(college => {
+                    if(college==this.college){
+                        if(college.mains!=null){
+                            this.mains = college.mains
+                        }
+                    }
+                });
+                this.collegeCode = this.college.code;
+                
+            },
+            main:function(){
+                this.sonCode='';
+                this.sonName='';
+                this.son={};
+                this.sons=[];
+                this.mains.forEach(main=>{
+                    if(main==this.main){
+                        this.sons = main.sons
+                    }
+                });
+                this.mainCode = this.main.code;
+                this.mainName = this.main.name;
+            },
+            son:function(){
+                this.sonCode = this.son.code;
+                this.sonName = this.son.name;
+            }
+        }
+	});
+</script>
+</html>

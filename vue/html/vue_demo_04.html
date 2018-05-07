@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+	{{a}}
+</div>
+</body>
+<script type="text/javascript">
+	var data = {a:1};
+	//Object.freeze(data);//防止已有属性被修改，例如data
+	var vm = new Vue({
+		el:'#app',
+		data:data
+	});
+	//此方法在a被改变时被调用 
+	vm.$watch('a',function(newValue,oldValue){
+		console.log('ffffffffffff')
+	})
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_01</title>
+	<script src="../js/vue/vue.js"></script>
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+
+<div id="app">
+	<!-- 简单的例子 -->
+  {{ message }}
+	<!-- 循环 -->
+  <ul>
+  	<li v-for="list in lists">{{list}}</li>
+  </ul>
+  <!-- if -->
+  <span v-if="seen">显示</span>
+	
+	<input v-model="message">
+  <p>ffffffffff</p>
+  <button v-on:click="reverseMessage">fanzhuan</button>
+</div>
+
+
+</body>
+<script type="text/javascript">
+
+	var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!',
+    lists:['1','2','3'],
+    seen:true
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+	});
+</script>
+</html>

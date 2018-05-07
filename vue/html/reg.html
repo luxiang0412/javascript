@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<form action="">
+    <input type="text" id="idCard" placeholder="输入省份证"><br>
+    <a href="javascript:submit1();">submit</a><br>
+    <input type="text" id="phone" placeholder="输入电话号码"><br>
+    <a href="javascript:submit2();">submit</a><br>
+    <input type="text" id="xxx" placeholder="输入"><br>
+    <a href="javascript:submit3();">submit</a><br>
+    <!--/^[\u4E00-\u9FA5]{2,4}$/-->
+</form>
+</body>
+<script type="text/javascript">
+    function submit1(){
+        var reg = new RegExp(/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/);
+        var str = $('#idCard').val();
+        alert(reg.test(str));
+    }
+    function submit2(){
+        var reg = new RegExp(/^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/);
+        var str = $('#phone').val();    
+        alert(reg.test(str));
+    }
+    function submit3(){
+        var str = $('#xxx').val();
+        alert(/^((1[3,5,8][0-9])|(14[5,7])|(17[0,6,7,8])|(19[7]))\d{8}$/.test(str));
+    }
+</script>
+</html>

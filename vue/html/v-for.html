@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+    <!-- input中  有一个时间 按下enter 会执行嗯一个addNewTodo方法
+        v-model='newTodoText'
+        当input中输入的时候 会把input的值绑定到newTodoText
+        方法执行添加一个todo
+        addNewTodo: function () {
+              this.todos.push({ //push
+                id: this.nextTodoId++,//nextTodoId初始值为4
+                title: this.newTodoText//初始为''
+              })
+              this.newTodoText = ''
+            }
+
+
+        li中使用模板 //模板放在new Vue()的前面
+        父组件向子组件传递数据  组件向上传递事件  remove
+        Vue.component('todo-item', {
+        template: '\
+            <li>\
+            {{ title }}\
+            <button v-on:click="$emit(\'remove\')">X</button>\
+            </li>\
+        ',
+        props: ['title']
+        })
+    -->
+        <div id="app">
+                <input
+                  v-model="newTodoText"
+                  v-on:keyup.enter="addNewTodo"
+                  placeholder="Add a todo"
+                >
+                <ul>
+                  <li
+                    is="todo-item"
+                    v-for="(todo, index) in todos"
+                    v-bind:key="todo.id"
+                    v-bind:title="todo.title"
+                    v-on:remove="todos.splice(index, 1)"
+                  ></li>
+                </ul>
+              </div>
+</body>
+<script type="text/javascript">
+Vue.component('todo-item', {
+  template: '\
+    <li>\
+      {{ title }}\
+      <button v-on:click="$emit(\'remove\')">X</button>\
+    </li>\
+  ',
+  props: ['title']
+})
+	var app = new Vue({
+		el:'#app',
+		data: {
+            newTodoText: '',
+            todos: [
+              {
+                id: 1,
+                title: 'Do the dishes',
+              },
+              {
+                id: 2,
+                title: 'Take out the trash',
+              },
+              {
+                id: 3,
+                title: 'Mow the lawn'
+              }
+            ],
+            nextTodoId: 4
+          },
+          methods: {
+            addNewTodo: function () {
+              this.todos.push({
+                id: this.nextTodoId++,
+                title: this.newTodoText
+              })
+              this.newTodoText = ''
+            }
+          }
+	});
+    
+</script>
+</html>

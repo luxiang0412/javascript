@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+
+    -->
+</body>
+<script type="text/javascript">
+'use strict'
+    /*
+      函数的初始化有两种 
+      函数可以少传参数或者不传 ， 
+      不传默认传入  未定义的参数 返回结果 NaN
+    */
+    function aaa(x){
+        if(x>=0){
+            return x;
+        }else{
+            return -x;
+        }
+    };
+    var abs = function(){
+
+    };
+
+    function ccc(x) {
+    if (typeof x !== 'number') {
+        throw 'Not a number';
+    }
+    if (x >= 0) {
+        return x;
+    } else {
+        return -x;
+    }
+
+    /*
+        
+    */
+    }
+    function foo(x) {
+        console.log('x = ' + x); // 10
+        for (var i=0; i<arguments.length; i++) {
+            console.log('arg ' + i + ' = ' + arguments[i]); // 10, 20, 30
+        }
+    }
+    foo(10, 20, 30);
+
+    function sum(...rest){
+        var count = 0;
+        for(var i =0 ;i<arguments.length;i++){
+            count = count+arguments[i]
+        }
+        return count;
+    };
+    /*
+        javascript 会自动在行末加上 ; 号
+        return
+        {xxx}; 这是错误的写法
+
+        正确写法
+        return {
+            xxxxx;
+        };
+        
+    */
+    var b = function (){
+        var sum = 0;
+        for(let i = 0 ;i<8;i++){
+            sum=sum+i;
+        }
+        return sum;
+    }
+    let [a,n,c] = ['aaa','bbb','ccc']
+    console.log(a+''+n+''+c)
+    var person = {
+        name:'xiaoming',
+        age:20,
+        gender:'男',
+        school:'江西理工'
+    }
+    /*
+        name:gender 把name的值赋给gender
+        name=9999 当name未定义的时候  默认值为9999
+    */
+    let {name , age , school}=person;
+    console.log(''+name+''+age+''+school)
+    let { gender:id} = person;
+    console.log(name+''+id)
+
+    function printDate(year=0,month=0,day=0){
+        console.log(year+''+month+''+day)
+    }
+    printDate();
+
+
+
+    //在函数内部定义的函数，this又指向undefined了！（在非strict模式下，它重新指向全局对象window！）
+    var xiaoming = {
+        name: '小明',
+        birth: 1990,
+        age: function () {
+            var that = this; // 在方法内部一开始就捕获this
+            console.log(this)
+            function getAgeFromBirth() {
+                var y = new Date().getFullYear();
+                console.log(this)
+                return y - that.birth; // 用that而不是this
+            }
+            return getAgeFromBirth();
+        }
+    };
+    
+    xiaoming.age();
+    /*
+        由于fn是window的属性  
+        不能调用 xiaoming的属性
+    */
+   // var fn = xiaoming.age;
+
+   //函数.apply(object,[函数本身的参数])
+   //call() 和 apply()相似 apply传入一个数组
+   //call()传入多个参数 按顺序
+
+   var count = 0;
+   var oldParseInt = parseInt;
+   window.parseInt = function(){
+       count+=1;
+       return oldParseInt.apply(null,arguments);
+   }
+</script>
+</html>

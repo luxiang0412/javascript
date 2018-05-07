@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <button @click="count+=1">增加1</button><br>
+    {{count}}
+
+    <br>
+    <!-- 输出name 和 这个标签的名字-->    
+    <button @click="greet">alert</button><br>
+    <!-- 
+        参数$event
+    -->
+    <button v-on:click="warn('Form cannot be submitted yet.',$event)">
+        Submit
+    </button>
+</div>
+</body>
+<script type="text/javascript">
+	var app = new Vue({
+		el:'#app',
+		data:{
+            count:0,
+            name:'vue.js'
+		},
+        methods:{
+            greet:function(event){
+                alert('Hello'+this.name)
+                if(event){
+                    alert(event.target.tagName)
+                }
+            },
+            warn:function(message,event){
+                if(event){
+                    alert(message+event)
+                }
+            }
+        }
+	});
+</script>
+</html>

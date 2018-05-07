@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包</title>
+</head>
+<body>
+    
+</body>
+<script type="text/javascript">
+    function sum(arr){
+        return arr.reduce(function(x,y){
+            return x+y;
+        });
+    }
+
+    function lazy_sum(arr){
+        return function(){
+            return arr.reduce(function(x,y){
+                return x+y;
+            })
+        };
+    }
+
+    function count() {
+        var arr = [];
+        for (var i=1; i<=3; i++) {
+            arr.push((function (n) {
+                return function () {
+                    return n * n;
+                }
+            })(i));
+        }
+        return arr;
+    }
+
+    function make_pow(n){
+        return function(x){
+            return Math.pow(n,x);
+        }
+    }
+　　var object = {
+　　　　name : "My Object",
+
+　　　　getNameFunc : function(){
+　　　　　　return function(){
+　　　　　　　　return name;
+　　　　　　};
+
+　　　　}
+
+　　};
+
+　　alert(object.getNameFunc()());
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+    <!--可以用内联或者外部引用 ， 可以是数组或者表达式-->
+<div id="app">
+    <div  class="static" v-bind:class="{active:isActive,'text-danger':hasError}">
+
+    </div>
+    <div v-bind:style="{color:activeColor,fontSize:fontSize+'px'}">
+
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    var app = new Vue({
+        el:'#app',
+        data:{
+            isActive:true,
+            hasError:false,
+            activeColor:red,
+            fontSize:16
+        }
+    });
+</script>
+</html>

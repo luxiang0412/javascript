@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>高阶函数</title>
+</head>
+<body>
+    <!--
+
+    -->
+</body>
+<script type="text/javascript">
+    //高阶函数  ：能够接受其他函数作为参数的函数 就是高阶函数
+    /*
+       
+    */
+    function add(a){
+        return a+10;
+    }
+    function addd(x,y,f){
+        return f(x)+f(y);
+    }
+    //console.log(addd(1,2,add))
+
+    //map/reduce
+    var arr = [99,88,77,66];
+    function pow(x){
+        return x*x;
+    }
+
+    var newArr = arr.map(pow);
+    newArr.forEach(element => {
+        console.log(element);
+    });
+
+    function string(x){
+        return '\''+x+'\'';
+    }
+    var stringArr = arr.map(string);
+    stringArr.forEach(function(e,index,arr){
+        console.log('index:'+index+' element:'+e)
+    });
+
+    var result = arr.reduce(function(x,y){
+        if(x===0||y===0)
+            return 0;
+        return x*y;
+    });
+    console.log(result);
+
+    var stringa = '123456';
+    var stringArr = [];
+    var numArr  = [];
+    for(let i = 0;i<stringa.length;i++){
+        stringArr[i]=stringa.substring(i,i+1);
+    }   
+    numArr = stringArr.map(function(x){
+        return Number(x);
+    })
+    var r = numArr.reduce(function(x,y){
+        x = 0;
+        return x+y
+    });
+    console.log(numArr);
+    console.log(r);
+
+    var arrTest = ['a',' ',' ',null];
+    console.log(arrTest.filter(function(x){
+        return x&&x.trim;
+    }));
+    var
+    r,
+    arr1 = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+    r = arr1.filter(function (element, index, self) {
+    return self.indexOf(element) === index; 
+    });
+    console.log(r)
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="app">
+    <p>{{message}}</p>
+    <span v-once>这里值永远不会改变：{{message}}</span><!--再次改变message的值不会再改变span中的message值-->
+    <br>
+    <span v-html="message"></span>
+    <br>
+    <span ></span>
+    {{boolean?"1":"0"}}
+    <br>{{num*19}}
+    <br>{{message.split('').reverse().join('ss')}}
+    <br>
+    <div v-if="boolean">lllllllll</div>
+    <button @click="click1">点击事件</button><!--@click 是 v-on:click的简称-->
+    <button @click="nows">time</button><!--@click 是 v-on:click的简称-->
+    <a :href="url">baidu</a>
+    <br>{{returns}} <!--computed属性 方法会基于它所依赖的数据进行缓存，数据没有发生变化，则不用每次都执行函数 methods 则是每次都执行-->
+    {{now}}
+</div>
+</body>
+<script type="text/javascript">
+    var i = 0;
+    var app = new Vue({
+        el:'#app',
+        data:{
+            message:'msg',
+            boolean:true,
+            num:6,
+            url:'https://www.baidu.com',
+            fos:{
+                
+            }
+        },
+        
+        computed:{
+            returns:function(){
+                return this.message.split('').reverse().join('')
+            },
+            now:function(){
+                console.log(i++);
+                return Date.now();
+            }
+        },
+        methods:{
+            click1:function () {
+                alert('click');
+            },
+            nows:function(){
+                console.log(i++);
+                console.log(Date.now);
+            }   
+        },
+        beforeCreate:function(){
+            console.log('beforeCreate!!');
+        },
+        created:function(){
+            console.log('created!!!');
+        },
+        beforeMount:function(){
+            console.log('beforeMount!!');
+        },
+        mounted:function(){
+            console.log('mounted!!!');
+        },
+        beforeUpdate:function(){
+            console.log('beforeUpdate!!!');
+        },
+        updated:function(){
+            console.log('updated!!!');
+        },
+        beforeDefroy:function(){
+            console.log('beforeDefroy!!!');
+        },
+        defroyed:function(){
+            console.log('defroyed!!!');
+        }
+    });
+</script>
+</html>

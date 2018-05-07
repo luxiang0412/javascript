@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue_demo_</title>
+	<script src="../js/vue/vue.js"></script>	
+	<script src="../js/jquery/jquery-3.2.1.slim.min.js" =""></script>
+</head>
+<body>
+<div id="watch">
+    <p>
+        问一个答案是 yes/no 的问题：<br>
+        <input v-model="question">
+    </p>
+    <p>{{answer}}</p><!--watch 是当某个属性被改变时执行函数-->
+</div>
+</body>
+<script type="text/javascript">
+    var warch = new Vue({
+        el:'#watch',
+        data:{
+            question:'aaaaaaa',
+            answer:'sssssss'
+        },
+        watch:{
+                question:function(newQuestion,oldQuestion){
+                    this.getAnswer();
+                }
+        },
+        methods:{
+            getAnswer:function(){
+                this.answer = 'huida'
+            }
+        }
+    });
+</script>
+</html>
