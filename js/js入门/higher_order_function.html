@@ -77,5 +77,33 @@
     return self.indexOf(element) === index; 
     });
     console.log(r)
+
+    var arr1 = [];
+    for(let i =0;i<100;i++){
+        arr1.push(i);
+    }
+    var arr2 = arr1.filter(function(element) {
+        if (element < 2) {
+            return false;
+        }
+        for (let i=2; i<element; i++) {
+            if (element % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    });
+    console.log(arr2);
+    //generator 生成器
+    function fib(max){
+        var a = 0,
+            b=1,
+            arr3=[0,1];
+        while(arr3.length<max){
+            [a,b]=[b,a+b]
+            arr3.push(b);
+        }
+        return arr3;
+    }
 </script>
 </html>
