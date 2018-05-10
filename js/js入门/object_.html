@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+
+    -->
+</body>
+<script type="text/javascript">
+'use strict';
+    /*
+       
+    */
+    function Student(name) {
+        this.name = name,
+        this.hello = function () {
+            alert('Hello, ' + this.name + '!');
+        }
+    }
+    var xiao = new Student('xiao');
+
+    function Cat(name) {
+    this.name=name;
+    }
+    Cat.prototype.say = function () {
+        return 'Hello, ' + this.name + '!';
+    }
+    /*
+        Object.prototype => Function.prototype =>Object或者其他对象
+
+        Object.__proto__===Function.prototype //true
+        Object.prototype === Function.prototype.__proto__//true
+
+        Object.prototype 是一个对象
+
+        Function._proto_,Function.prototype,Object.prototype,都是对象
+
+        Object.prototype===Function.prototype.__proto__     //都是对象 Function.prototype 是一个对象 原型指向Object
+        Function.prototype._proto_===Function._proto_       //Function的原型是指向 Function.prototype对象的原型Object
+        Function.prototype===Function.__proto__             //Function的原型是指向 Function.prototype对象
+        Function.prototype===Object.__proto__               //Object的原型指向Function.prototype
+    */
+</script>
+</html>

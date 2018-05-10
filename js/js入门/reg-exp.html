@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reg-exp</title>
+</head>
+<body>
+    <!--
+
+    -->
+</body>
+<script type="text/javascript">
+    /*
+       
+        /d 匹配数字
+        /w 匹配字母或者数字
+        /s 表示一个空格或者tab
+        a|b a或者b
+        ^ 表示以什么开头 ^/d 以数字开头
+        $ 表示以什么结束
+        * 表示任意个字符 例如1* 表示有n个1
+        g 表示 全局搜索  /test/g 表示全局搜索test exec();表示获取下一个存在的字符  并返回索引
+    */
+    var re = /^\d{3}\-\d{3,8}$/;
+    var re2 = /^(\d{3})-(\d{3,8})$/;
+    var re3 = /^(\d{3})\s(\d{3,8})$/;
+
+
+    //正则匹配默认是贪婪匹配
+    var reg1 = /^(\d+)(0*)$/
+
+    //reg1.exec('111010101');
+    //(3) ["111010101", "111010101", "", index: 0, input: "111010101"]
+
+    var reg2 = /^(\d+?)(0*)$/ //加个?可以取消贪婪匹配
+    //reg2.exec('1023100');
+    //(3) ["1023100", "10231", "00", index: 0, input: "1023100"]
+
+    var reg3 = /^0*$/
+
+    var reg4 = /a*test*/g
+</script>
+</html>
