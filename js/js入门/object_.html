@@ -13,23 +13,7 @@
 </body>
 <script type="text/javascript">
 'use strict';
-    /*
-       
-    */
-    function Student(name) {
-        this.name = name,
-        this.hello = function () {
-            alert('Hello, ' + this.name + '!');
-        }
-    }
-    var xiao = new Student('xiao');
 
-    function Cat(name) {
-    this.name=name;
-    }
-    Cat.prototype.say = function () {
-        return 'Hello, ' + this.name + '!';
-    }
     /*
         Object.prototype => Function.prototype =>Object或者其他对象
 
@@ -45,5 +29,54 @@
         Function.prototype===Function.__proto__             //Function的原型是指向 Function.prototype对象
         Function.prototype===Object.__proto__               //Object的原型指向Function.prototype
     */
+
+    function inherits(Child,Parent){
+        var F = function(){};
+        F.prototype = Parent.prototype;
+        var fff= new F();
+        Child.prototype = fff;
+        Child.prototype.constructor = Child;    
+        /*
+            打印--------------------
+            ----------------------
+            ----------------------
+        */
+        console.log(Parent.prototype)
+        console.log('Parent:'+Parent)
+        console.log(Parent.prototype.constructor)
+        console.log('----------------------')
+        console.log(F.prototype)
+        console.log('F:'+F)
+        console.log(fff)
+        console.log('----------------------')
+        console.log(Child.prototype)
+        console.log('Child:'+Child)
+        console.log(Child.prototype.constructor)
+
+    }
+    function Student(props) {
+        this.name = props.name || 'Unnamed';
+        this.age = props.age || '20';
+    }
+    
+
+    Student.prototype.hello = function () {
+        alert('Hello, ' + this.name + '!');
+    }
+
+    function PrimaryStudent(props) {
+        Student.call(this,props);
+        this.grade = props.grade || 1;
+    }
+    PrimaryStudent.prototype.getGrade = function () {
+        return this.grade;
+    };
+    // 实现原型继承链:
+    inherits(PrimaryStudent, Student);
+
+
+    var par = new Student({name :'par',age:22});
+    var child = new PrimaryStudent({name:'child'});
+    var child2 = new PrimaryStudent({name:'child2'});
 </script>
 </html>
