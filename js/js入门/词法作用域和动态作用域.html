@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>词法作用域和动态作用域</title>
+</head>
+<body>
+    <!--
+
+    -->
+    <a href="https://github.com/mqyqingfeng/Blog/issues/3" target="_blank">https://github.com/mqyqingfeng/Blog/issues/3</a>
+</body>
+<script type="text/javascript">
+    /*  
+        
+        作用域
+        作用域是指程序源代码中定义变量的区域。
+
+        作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。
+
+        JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。
+    */
+    var scope = "global scope";
+    function checkscope(){
+        var scope = "local scope";
+        function f(){
+            console.log(scope)
+            return scope;
+        }
+        return f();
+    }
+
+    var scope2 = "global scope";
+    function checkscope2(){
+        var scope2 = "local scope";
+        function f2(){
+            console.log(scope2)
+            return scope2;
+        }
+        return f2;
+    }
+    checkscope();
+    checkscope2()();
+
+    /*  
+        上下文栈
+        
+    */
+    var foo = function (){
+        console.log('foo1');
+    }
+    foo();
+    var foo = function (){
+        console.log('foo2');
+    }
+    foo();
+    var a = 'aaa';
+    console.log(a)
+    var a = 'bbb';
+    console.log(a);
+
+    function foo2(){
+        console.log('aaaaaaaa');
+    }
+    foo2();
+    function foo2(){
+        console.log('bbbbbbbbbbbbb');
+    }
+    foo2();
+    /*
+        execution context 执行上下文 
+        ECstack 执行上下文栈
+        始终有一个globalContext
+        执行一个函数的时候会创建一个执行上下文
+        函数执行完之后，会把该函数的执行上下文  从栈中弹出。
+
+        函数的执行过程如下：
+        1.checkscope 函数被创建，保存作用域链到 内部属性[[scope]]
+            checkscope.[[scope]] = [
+                globalContext.VO
+            ];
+        
+        2.执行 checkscope 函数，创建 checkscope 函数执行上下文，checkscope 函数执行上下文被压入执行上下文栈
+            ECStack = [
+                checkscopeContext,
+                globalContext
+            ];
+        3.checkscope 函数并不立刻执行，开始做准备工作，第一步：复制函数[[scope]]属性创建作用域链
+
+            checkscopeContext = {
+                Scope: checkscope.[[scope]],
+            }
+        4.第二步：用 arguments 创建活动对象，随后初始化活动对象，加入形参、函数声明、变量声明
+
+            checkscopeContext = {
+                AO: {
+                    arguments: {
+                    length: 0
+                    },
+                    scope2: undefined
+                }，
+                Scope: checkscope.[[scope]],
+            }
+        5.第三步：将活动对象压入 checkscope 作用域链顶端
+            checkscopeContext = {
+                AO: {
+                    arguments: {
+                    length: 0
+                    },
+                    scope2: undefined
+                },
+                Scope: [AO, [[Scope]]]
+            }
+        6.准备工作做完，开始执行函数，随着函数的执行，修改 AO 的属性值
+        checkscopeContext = {
+            AO: {
+                arguments: {
+                length: 0
+                },
+                scope2: 'local scope'
+            },
+            Scope: [AO, [[Scope]]]
+        }
+        7.弹出该函数的执行上下文栈
+    */
+</script>
+</html>
