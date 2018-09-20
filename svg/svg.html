@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./raphael.js"></script>
+<script type="text/javascript">
+    window.onload = function (){
+        var paper = Raphael(0, 0, 900, 500); //创建画图
+        var areas = $('area'); //获取热区
+        var data = {
+            rows:[[1,1,1,1],[2,2,2,2],[3,3,3,3],[4,4,4,4],[5,5,5,5],[6,6,6,6]]
+        }
+        var rows = data.rows;
+        $.each(areas, function (index, item) {
+            var xy = $(item).attr('coords').split(','); //获取坐标
+            paper.rect(parseInt(xy[0]), parseInt(xy[1]), parseInt(xy[2]) - parseInt(xy[0]), parseInt(xy[3]) - parseInt(xy[1])) //创建矩形
+                    .attr({ fill: '#fff', 'cursor': 'pointer', 'stroke-width': 0 })
+                    .data("i", (index + 1))
+                    .mouseover(function () { //移入事件
+                        this.attr({ fill: '#ecda3b', "stroke-opacity": 0.5, 'stroke-width': 0 });
+                    })
+                    .mouseout(function () {  //移出事件
+                        this.attr({ fill: '#fff', 'stroke-width': 0 });
+                    })
+                    .click(function () {  //点击事件
+                        _self._infoAction('B' + $('.typeid').text() + '-' + this.data("i"));
+                    });
+            paper.text(parseInt(xy[2])-10, parseInt(xy[3]) -5, 'B' + $('.typeid').text() + '-' + (index + 1)).attr({ 'font-size': 9 }); //创建描述  
+        })
+    }    
+    
+</script>
+</head>
+<body>
+    <!--
+
+    -->
+
+</body>
+
+</html>
